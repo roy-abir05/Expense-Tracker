@@ -1,0 +1,18 @@
+$bg: #daefec;
+$bgComponent: lighten($bg, 5%);
+$bgSoft: white;
+$bgHard: #a5faed;
+
+$textBasic: black;
+$textSoft: #A9BAC2;
+$textNeon: #27E5FF;
+
+$font: 'Poppins', sans-serif;
+
+*{
+    color: $textBasic;
+    // background: linear-gradient(45deg, $bg, lighten($bg, 10%));
+}
+
+$border: 3px solid white;
+$borderRadius: 5px;

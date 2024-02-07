@@ -1,0 +1,47 @@
+@import '../../style.scss';
+
+.CardContainer{
+    background-color: $bgSoft;
+
+    width: 400px;
+    height: 80px;
+
+    margin: 10px 10px;
+
+    border: $border;
+    border-radius: $borderRadius;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .Content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 18px;
+        font-weight: 400;
+
+        .AmountAndDate{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 5px 0px;
+
+            font-size: 12px;
+            font-weight: lighter;
+            color: $textSoft;
+
+            .Amount{
+                margin-right: 5px;
+            }
+
+            .Date{
+                margin-left: 5px;
+            }
+        }
+    }
+}

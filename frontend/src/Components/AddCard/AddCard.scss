@@ -1,0 +1,39 @@
+@import '../../style.scss';
+
+input{
+
+    background-color: $bg;
+
+    width: 180px;
+    height: 15px;
+
+    margin: 5px 0px;
+
+    padding: 5px 5px;
+
+    border: 2px solid white;
+    border-radius: $borderRadius;
+
+}
+
+.Description{
+    // width: 200px;
+    // height: 100px;
+    input{
+        width: 200px;
+        height: 100px;
+        padding: 2px 2px;
+        // margin: 0px 0px;
+    }
+}
+
+button{
+    margin: 10px 0px;
+
+    width: 100px;
+    height: 25px;
+
+    background-color: $bgHard;
+    border: none;
+    border-radius: 15px;
+}
