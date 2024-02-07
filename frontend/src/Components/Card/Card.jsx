@@ -1,11 +1,12 @@
 import React from 'react'
 import './Card.scss'
+// import trashLogo from '/public/logo512.png';
 
-const IncomeCard = ({ title, amount, date }) => {
+const IncomeCard = ({ title, amount, date, logo }) => {
   return (
     <div className='CardContainer'>
         <div className='icon'>
-            <img src="../../../Public/logo192.png" alt="" />
+            <img src={logo} alt="" />
         </div>
         <div className='Content'>
             <div className='Title'>{title}</div>
@@ -15,7 +16,7 @@ const IncomeCard = ({ title, amount, date }) => {
             </div>
         </div>
         <div className='Delete'>
-            <img src="../../../Public/logo192.png" alt="" />
+            <img src="/TrashLogo.png" alt="" />
         </div>
     </div>
   )

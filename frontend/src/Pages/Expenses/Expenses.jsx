@@ -15,8 +15,8 @@ const Expenses = () => {
                 <AddCard text={"Expense"}/>
             </div>
             <div className='RightPanel'>
-                <Card title={"Shopify"} amount={8000} date={[21, 1, 2024]}/>
-                <Card title={"Developer Salary"} amount={100000} date={[1, 2, 2024]}/>
+                <Card title={"Shopify"} amount={8000} date={[21, 1, 2024]} logo={"/DownArrow.png"}/>
+                <Card title={"Developer Salary"} amount={100000} date={[1, 2, 2024]} logo={"/DownArrow.png"}/>
             </div>
         </div>
     </div>
