@@ -51,6 +51,20 @@ app.post("/Incomes", async (req, res) => {
 	res.send("Request Received");
 });
 
+app.post("/IncomesDelete", async (req, res) => {
+
+
+	const data = {
+		title: req.body.title,
+		amount: req.body.amount,
+		date: req.body.date
+	}
+
+	await Income.deleteMany({title: data.title, amount: data.amount, date: data.date})
+
+	res.send("Request Received");
+});
+
 app.get("/Expenses", cors(), async (req, res) => {
 
 	const allData = await Expense.find({});
@@ -66,6 +80,19 @@ app.post("/Expenses", async (req, res) => {
 	}
 
 	await Expense.insertMany([data])
+
+	res.send("Request Received");
+});
+
+app.post("/ExpensesDelete", async (req, res) => {
+
+	const data = {
+		title: req.body.title,
+		amount: req.body.amount,
+		date: req.body.date
+	}
+
+	await Expense.deleteMany({title: data.title, amount: data.amount, date: data.date})
 
 	res.send("Request Received");
 });

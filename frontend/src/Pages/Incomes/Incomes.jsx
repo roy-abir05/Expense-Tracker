@@ -53,6 +53,7 @@ const Incomes = () => {
                             amount={e.amount}
                             date={e.date}
                             logo={"/UpArrow.png"}
+                            url={"Incomes"}
                         />
                     )
                     )

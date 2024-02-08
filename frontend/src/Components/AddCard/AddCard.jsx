@@ -24,15 +24,7 @@ const AddIncomeCard = ({ text, url }) => {
 
         setTitle("");
         setAmount(0);
-        setDate(null);
-        // result = await result.json();
-        // console.warn(result);
-        // if (result) {
-        //     alert("Data saved succesfully");
-        //     setTitle("");
-        //     setAmount(0);
-        //     // setDate("");
-        // }
+        setDate("");
     }
 
   return (

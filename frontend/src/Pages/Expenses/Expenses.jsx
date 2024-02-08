@@ -53,6 +53,7 @@ const Expenses = () => {
                             amount={e.amount}
                             date={e.date}
                             logo={"/DownArrow.png"}
+                            url={"Expenses"}
                         />
                     )
                     )
