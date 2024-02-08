@@ -12,7 +12,7 @@ const IncomeCard = ({ title, amount, date, logo }) => {
             <div className='Title'>{title}</div>
             <div className='AmountAndDate'>
                 <div className='Amount'>Rs {amount}</div>
-                <div className="Date">{date[0]}/{date[1]}/{date[2]}</div>
+                <div className="Date">{date}</div>
             </div>
         </div>
         <div className='Delete'>

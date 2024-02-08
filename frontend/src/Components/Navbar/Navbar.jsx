@@ -1,15 +1,15 @@
 import React from 'react'
 import './Navbar.scss'
-// import '../../../public'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <div className='NavContainer'>
         <img src="/ExpenseTrackerLogo.jpeg" alt="" id="appLogo"/>
         <ul>
-            <li><a href="">Dashboard</a></li>
-            <li><a href="">Incomes</a></li>
-            <li><a href="">Expenses</a></li>
+            <Link to = {`/`} > <li>Dashboard</li> </Link>
+            <Link to = {`/Incomes`} > <li>Incomes</li> </Link>
+            <Link to = {`/Expenses`} > <li>Expenses</li> </Link>
         </ul>
     </div>
   )
