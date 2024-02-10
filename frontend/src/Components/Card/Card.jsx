@@ -1,6 +1,5 @@
 import React from 'react'
 import './Card.scss'
-import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { removeIncome } from '../../redux/slices/incomeReducer'
 import { removeExpense } from '../../redux/slices/expenseReducer'
@@ -10,18 +9,6 @@ const IncomeCard = ({ title, amount, date, logo, url }) => {
     const dispatch = useDispatch();
 
     const handleDelete = async (e) => {
-        // e.preventDefault();
-
-        // try{
-        //     await axios.post(`http://localhost:5000/${url}Delete`,{
-        //         title,
-        //         amount,
-        //         date
-        //     })
-        // }
-        // catch(e){
-        //     console.log(e);
-        // }
 
         const data = {
             title: title,

@@ -6,7 +6,7 @@ import * as d3 from 'd3'
 import './Dashboard.scss'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchIncomes } from '../redux/slices/incomeReducer';
+import { fetchIncomes } from '../../redux/slices/incomeReducer';
 import { fetchExpenses } from '../../redux/slices/expenseReducer';
 
 const Dashboard = () => {
@@ -19,85 +19,98 @@ const Dashboard = () => {
         dispatch(fetchExpenses())
     })
 
-    // const svgRef = useRef();
+    const svgRef = useRef();
 
-    // useEffect(()=>{
-    //   // setting up svg
-    //   const width = 800;
-    //   const height = 400;
-    //   const svg = d3.select(svgRef.current)
-    //   .attr('width', width)
-    //   .attr('height', height)
-    //   .style('background', 'none')
-    //   .style('overflow', 'visible');
+    useEffect(()=>{
 
-    //   // setting the scaling
-    //   const xScale = d3.scaleLinear()
-    //   .domain([0, data.length-1])
-    //   .range([0, width]);
-      
-    //   const yScale = d3.scaleLinear()
-    //   .domain([0, Math.max(...data)*1.2])
-    //   .range([height, 0]);
+      let incomeData = [
+        {title: "first", amount: 100, date: "2024-02-01"},
+        {title: "second", amount: 200, date: "2024-02-02"},
+        {title: "third", amount: 300, date: "2024-02-03"},
+        {title: "fourth", amount: 400, date: "2024-02-04"},
+        {title: "fifth", amount: 500, date: "2024-02-05"},
+      ];
+      let incomeDates=[], incomeAmounts=[];
+      const parseTime = d3.timeParse("%Y-%m-%d");
+      for(let i=0; i<items.income.incomes.length; i++){
+        incomeData.push(items.income.incomes[i]);
+      }
+      for(let i=0; i<incomeData.length; i++){
+        incomeDates.push(parseTime(incomeData[i].date));
+        incomeAmounts.push(incomeData[i].amount);
+      }
 
-    //   const generateScaledLine = d3.line()
-    //   .x((d, i)=> xScale(i))
-    //   .y(yScale)
-    //   .curve(d3.curveCardinal);
+      let dates=[];
+      for(let i=0; i<items.income.incomes.length; i++){
+        dates.push(items.income.incomes[i]);
+      }
+      for(let i=0; i<items.expense.expenses.length; i++){
+        dates.push(items.expense.expenses[i]);
+      }
 
-
-    //   // setting up the scale
-    //   const xAxis = d3.axisBottom(xScale)
-    //   .ticks(data.length)
-    //   .tickFormat(i => i+1);
-
-    //   const yAxis = d3.axisLeft(yScale)
-    //   .ticks((Math.max(...data)/10));
-    //   // .tickFormat(i => i*(Math.max(...data)/height));
-
-    //   svg.append('g')
-    //   .call(xAxis)
-    //   .attr('transform', `translate(0, ${height})`);
-    //   svg.append('g')
-    //   .call(yAxis);
-
-    //   // scattreing dots
-    //   svg.append('g')
-    //   .selectAll('dot')
-    //   .data([data])
-    //   .enter()
-    //   .append('circle')
-    //   .attr("cx", function (d) { return xScale(d[0]); } )
-    //   .attr("cy", function (d) { return yScale(d[0]); } )
-    //   .attr('r', 2)
-    //   .style("fill", 'red');
+      const width = 500;
+      const height = 350;
+      const svg = d3.select(svgRef.current)
+      .attr('width', width)
+      .attr('height', height)
+      .style('overflow', 'visible')
+      .style('margin-top', '100px');
 
 
-    //   // setting up the data for the svg
+      // const parseTime = d3.timeParse("%Y-%m-%d");
 
-    //   svg.selectAll('.line')
-    //   .data([data])
-    //   .join('path')
-    //   .attr('d', d => generateScaledLine(d))
-    //   .attr('fill', 'none')
-    //   .attr('stroke', 'red');
+      const xScale = d3.scaleTime()
+      .domain(d3.extent(dates))
+      .range([0, width]);
+      const yScale = d3.scaleLinear()
+      .domain([0, 100000])
+      .range([height, 0]);
 
-    //   // svg.append("path")
-    //   // .datum(data)
-    //   // .attr("fill", "none")
-    //   // .attr("stroke", "steelblue")
-    //   // .attr("stroke-width", 1.5)
-    //   // .attr("d", d3.line()
-    //   //   .x(function(d) { return xScale(d[1]) })
-    //   //   .y(function(d) { return yScale(d[1]) })
-    //   //   );
 
-    // }, [data]);
+      const xAxis = d3.axisBottom(xScale).ticks(incomeDates.length);
+      const yAxis = d3.axisLeft(yScale).ticks(10);
+      svg.append('g')
+      .call(xAxis)
+      .attr('transform', `translate(0, ${height})`);
+      svg.append('g')
+      .call(yAxis);
+
+      // svg.append('text')
+      // .attr('x', width/2)
+      // .attr('y', height+50)
+      // .text('Date');
+
+      // svg.append('text')
+      // .attr('x', height/2)
+      // .attr('y', -50)
+      // .text('Amount in Rs');
+
+      console.log(items.income.incomes);
+
+      svg.selectAll()
+      .data(items.income.incomes)
+      .enter()
+      .append('circle')
+      .attr('cx', d=>xScale(d.date))
+      .attr('cy', d=>yScale(d.amount))
+      .attr('r', 2)
+      .attr('fill', '#27E5FF');
+
+      svg.selectAll()
+      .data(items.expense.expenses)
+      .enter()
+      .append('circle')
+      .attr('cx', d=>xScale(d.date))
+      .attr('cy', d=>yScale(d.amount))
+      .attr('r', 2)
+      .attr('fill', '#f20202');
+
+    }, [items]);
 
   return (
     <>
     <Navbar />
-    <div className='GraphContainer'>
+    {/* <div className='GraphContainer'>
       <Line 
         data={{
           labels: items.income.incomes.map((e)=>e.date),
@@ -118,10 +131,10 @@ const Dashboard = () => {
         }
       }
       />
-    </div>
-    {/* <div className='GraphContainer'>
-      <svg ref={svgRef}></svg>
     </div> */}
+    <div className='GraphContainer' id='#my_dataviz'>
+      <svg ref={svgRef}></svg>
+    </div>
     </>
   )
 }

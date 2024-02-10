@@ -8,13 +8,16 @@
 
     background-color: $bgSoft;
 
+    border: 3px solid #f55b0f;
+    border-radius: $borderRadius;
+
     width: 94%;
     height: 50px;
 
     margin: 20px auto;
 
-    padding: 10px;
-    padding-bottom: 0px;
+    padding: 10px 10px 10px 10px;
+    // padding-bottom: 0px;
 
     border-radius: $borderRadius;
 
@@ -30,6 +33,7 @@
     }
 
     ul{
+        margin-top: 0px;
         margin-bottom: 0px;
         width: 80%;
         list-style-type: none;
@@ -37,12 +41,12 @@
         align-items: center;
         justify-content: space-evenly;
         text-decoration: none;
-
-        li{
-                text-decoration: none;
-                // color: $textSoft;
-                // color: $textNeon;
-        }
         
     }
+}
+
+.Dashboard, .Incomes, .Expenses{
+    text-decoration: underline;
+    text-decoration-color: $bgSoft;
+
 }

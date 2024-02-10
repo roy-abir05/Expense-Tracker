@@ -50,7 +50,7 @@ const expenseSlice = createSlice({
             state.expenses = action.payload;
         })
         builder.addCase(removeExpense.fulfilled, (state, action) => {
-            console.log(action.payload[0]);
+            // console.log(action.payload[0]);
             let index = state.expenses.indexOf(action.payload[0]);
             state.expenses.splice(index, 1);
         })

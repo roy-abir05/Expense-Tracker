@@ -16,6 +16,15 @@ input{
 
 }
 
+.Title input, .Amount input, .Date input{
+
+    box-shadow: 0px 0px 3px 1px $textNeon;
+
+    input::placeholder{
+        color: lighten($textBasic, 30%);
+    }
+}
+
 .Description{
     // width: 200px;
     // height: 100px;
@@ -29,6 +38,7 @@ input{
 
 button{
     margin: 10px 0px;
+    margin-left: 20px;
 
     width: 150px;
     height: 25px;
@@ -36,4 +46,15 @@ button{
     background-color: $bgHard;
     border: none;
     border-radius: 15px;
+
+
+}
+button:hover{
+    background-color: darken($bgHard, 7%);
+    border: $border;
+}
+button:active{
+    border: none;
+    box-shadow: 0px 0px 3px 3px $textNeon;
+    color: $textNeon;
 }

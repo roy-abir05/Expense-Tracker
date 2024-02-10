@@ -1,18 +1,34 @@
-$bg: #daefec;
-$bgComponent: lighten($bg, 5%);
-$bgSoft: white;
-$bgHard: #a5faed;
+// $bg: #daefec;
+// $bg: #24014a;
+$bg: black;
+// $bgComponent: lighten($bg, 10%);
+$bgComponent: #17012b;
+// $bgSoft: white;
+// $bgSoft: #7738f5;
+$bgSoft: darken(#83078f, 15%);
+// $bgHard: #a5faed;
+$bgHard: #2d0061;
 
-$textBasic: black;
+// $bgHard: #3e0457;
+
+// $textBasic: #fa0096;
+$textBasic: white;
 $textSoft: #A9BAC2;
 $textNeon: #27E5FF;
+
+// $border: #5a0275;
+$border: #f55b0f;
 
 $font: 'Poppins', sans-serif;
 
 *{
     color: $textBasic;
-    // background: linear-gradient(45deg, $bg, lighten($bg, 10%));
+    // background: linear-gradient(45deg, $bg, $bgComponent);
 }
 
-$border: 3px solid white;
+body{
+    background: linear-gradient(to right, $bg, lighten($bgComponent, 10%));
+}
+
+$border: 3px solid $border;
 $borderRadius: 5px;

@@ -7,9 +7,9 @@ const Navbar = () => {
     <div className='NavContainer'>
         <img src="/ExpenseTrackerLogo.jpeg" alt="" id="appLogo"/>
         <ul>
-            <Link to = {`/`} > <li>Dashboard</li> </Link>
-            <Link to = {`/Incomes`} > <li>Incomes</li> </Link>
-            <Link to = {`/Expenses`} > <li>Expenses</li> </Link>
+            <Link to = {`/`} > <li className='Dashboard'>Dashboard</li> </Link>
+            <Link to = {`/Incomes`} > <li className='Incomes'>Incomes</li> </Link>
+            <Link to = {`/Expenses`} > <li className='Expenses'>Expenses</li> </Link>
         </ul>
     </div>
   )

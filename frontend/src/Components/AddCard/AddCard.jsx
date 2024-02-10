@@ -10,7 +10,7 @@ const AddIncomeCard = ({ text, url }) => {
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState("");
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState();
     const [date, setDate] = useState("");
 
     const handleOnSubmit = async (e) => {
@@ -67,6 +67,7 @@ const AddIncomeCard = ({ text, url }) => {
         <div className='Date'>
             <input
                 type='date'
+                placeholder='00/00/0000'
                 onChange={(e) => setDate(e.target.value)}
             />
         </div>

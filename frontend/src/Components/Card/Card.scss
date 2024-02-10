@@ -1,19 +1,25 @@
 @import '../../style.scss';
 
 .CardContainer{
+
     background-color: $bgSoft;
 
-    width: 400px;
+    box-shadow: 0px 0px 3px 1px #f55b0f;
+
+    width: 350px;
     height: 80px;
 
-    margin: 10px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    // margin-right: 10px;
+    margin-left: 10px;
 
     border: $border;
     border-radius: $borderRadius;
 
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 
     .Content{
         display: flex;
@@ -34,14 +40,10 @@
 
             font-size: 12px;
             font-weight: lighter;
-            color: $textSoft;
 
-            .Amount{
+            .Amount, .Date{
                 margin-right: 5px;
-            }
-
-            .Date{
-                margin-left: 5px;
+                color: $textBasic;
             }
         }
     }
@@ -51,4 +53,10 @@ img{
     width: 30px;
     height: 30px;
     border-radius: 50%;
+}
+
+.CardContainer:hover{
+    background-color: darken($bgSoft, 10%);
+    box-shadow: 0px 0px 8px 5px $textNeon;
+    // transform: translateY(5px);
 }
