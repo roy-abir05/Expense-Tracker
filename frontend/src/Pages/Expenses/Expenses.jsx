@@ -4,33 +4,23 @@ import AddCard from '../../Components/AddCard/AddCard.jsx'
 import Navbar from '../../Components/Navbar/Navbar.jsx'
 import './Expenses.scss'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchExpenses } from '../../redux/slices/expenseReducer.js'
 
 const Expenses = () => {
 
-    const [expenses, setExpenses] = useState([]);
-
-    const fetchExpenses = async () => {
-        await axios.get("http://localhost:5000/Expenses").then((res)=>{
-
-            let temp = [];
-            for(let i=0; i<res.data.length; i++){
-                let tempObj = {
-                    title: res.data[i].title,
-                    amount: res.data[i].amount,
-                    date: res.data[i].date
-                };
-                temp[i] = tempObj;
-            }
-            setExpenses(temp);
-
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetchExpenses();
+        dispatch(fetchExpenses());
     })
+
+    const items = useSelector((state) => state);
+    
+    let totalExpense = 0;
+    items.expense.expenses && items.expense.expenses.map((e)=>{
+        totalExpense += e.amount
+    });
 
   return (
     <>
@@ -38,7 +28,7 @@ const Expenses = () => {
     <div className='Container'>
         <div className='Heading'>Expenses</div>
         <div className='TotalIncome'>
-            <span className='TotalIncomeText'>Total Expense: </span> <span className='TotalAmountEx'> Rs 3920</span>
+            <span className='TotalIncomeText'>Total Expense: </span> <span className='TotalAmountEx'> Rs {totalExpense}</span>
         </div>
         <div className='Content'>
             <div className="LeftPanel">
@@ -46,7 +36,7 @@ const Expenses = () => {
             </div>
             <div className='RightPanel'>
                 {
-                    expenses.map((e)=>
+                    items.expense.expenses.map((e)=>
                     (
                         <Card 
                             title={e.title}

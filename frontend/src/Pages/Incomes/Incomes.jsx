@@ -1,36 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import IncomeCard from '../../Components/Card/Card'
 import AddIncomeCard from '../../Components/AddCard/AddCard'
 import './Incomes.scss'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchIncomes } from '../../redux/slices/incomeReducer'
 
 const Incomes = () => {
 
-    const [incomes, setIncomes] = useState([]);
-
-    const fetchIncomes = async () => {
-        await axios.get("http://localhost:5000/Incomes").then((res)=>{
-
-            let temp = [];
-            for(let i=0; i<res.data.length; i++){
-                let tempObj = {
-                    title: res.data[i].title,
-                    amount: res.data[i].amount,
-                    date: res.data[i].date
-                };
-                temp[i] = tempObj;
-            }
-            setIncomes(temp);
-
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetchIncomes();
+        dispatch(fetchIncomes());
     })
+
+    const items = useSelector((state) => state);
+    
+    let totalIncome = 0;
+    items.income.incomes && items.income.incomes.map((e)=>{
+        totalIncome += e.amount
+    });
+
+
 
   return (
     <>
@@ -38,7 +30,7 @@ const Incomes = () => {
     <div className='Container'>
         <div className='Heading'>Incomes</div>
         <div className='TotalIncome'>
-            <span className='TotalIncomeText'>Total Income: </span> <span className='TotalAmount'> Rs 15200</span>
+            <span className='TotalIncomeText'>Total Income: </span> <span className='TotalAmount'> Rs {totalIncome}</span>
         </div>
         <div className='Content'>
             <div className="LeftPanel">
@@ -46,7 +38,7 @@ const Incomes = () => {
             </div>
             <div className='RightPanel'>
                 {
-                    incomes.map((e)=>
+                    items.income.incomes && items.income.incomes.map((e)=>
                     (
                         <IncomeCard 
                             title={e.title}

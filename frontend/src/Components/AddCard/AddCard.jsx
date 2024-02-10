@@ -1,31 +1,48 @@
 import React, { useState } from 'react'
 import './AddCard.scss'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { addIncome } from '../../redux/slices/incomeReducer'
+import { addExpense } from '../../redux/slices/expenseReducer'
 
 const AddIncomeCard = ({ text, url }) => {
 
+    const dispatch = useDispatch();
+
     const [title, setTitle] = useState("");
-    const [amount, setAmount] = useState();
+    const [amount, setAmount] = useState(0);
     const [date, setDate] = useState("");
 
     const handleOnSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
-        try{
-            await axios.post(`http://localhost:5000/${url}`,{
-                title,
-                amount,
-                date
-            })
-        }
-        catch(e){
-            console.log(e);
-        }
+        // try{
+        //     await axios.post(`http://localhost:5000/${url}`,{
+        //         title,
+        //         amount,
+        //         date
+        //     })
+        // }
+        // catch(e){
+        //     console.log(e);
+        // }
+        
+        const data = {
+            title: title,
+            amount: amount,
+            date: date
+        };
+
+        if(url === 'Incomes')
+            dispatch(addIncome(data));
+        else
+            dispatch(addExpense(data));
 
         setTitle("");
         setAmount(0);
         setDate("");
     }
+
 
   return (
     <>
@@ -53,13 +70,6 @@ const AddIncomeCard = ({ text, url }) => {
                 onChange={(e) => setDate(e.target.value)}
             />
         </div>
-
-        {/* <div className='Description'>
-            <input
-                type="text"
-                placeholder='Description (Optional)'
-            />
-        </div> */}
 
         <button className='Submit' onClick={handleOnSubmit}>
             Add {text}

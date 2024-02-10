@@ -39,7 +39,6 @@ app.get("/Incomes", cors(), async (req, res) => {
 
 app.post("/Incomes", async (req, res) => {
 
-
 	const data = {
 		title: req.body.title,
 		amount: req.body.amount,
@@ -48,7 +47,7 @@ app.post("/Incomes", async (req, res) => {
 
 	await Income.insertMany([data])
 
-	res.send("Request Received");
+	res.send([data]);
 });
 
 app.post("/IncomesDelete", async (req, res) => {
@@ -62,7 +61,7 @@ app.post("/IncomesDelete", async (req, res) => {
 
 	await Income.deleteMany({title: data.title, amount: data.amount, date: data.date})
 
-	res.send("Request Received");
+	res.send([data]);
 });
 
 app.get("/Expenses", cors(), async (req, res) => {
@@ -81,7 +80,7 @@ app.post("/Expenses", async (req, res) => {
 
 	await Expense.insertMany([data])
 
-	res.send("Request Received");
+	res.send([data]);
 });
 
 app.post("/ExpensesDelete", async (req, res) => {
@@ -94,7 +93,7 @@ app.post("/ExpensesDelete", async (req, res) => {
 
 	await Expense.deleteMany({title: data.title, amount: data.amount, date: data.date})
 
-	res.send("Request Received");
+	res.send([data]);
 });
 
 app.listen(PORT, () => {
