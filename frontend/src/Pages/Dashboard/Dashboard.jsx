@@ -12,33 +12,17 @@ import { fetchExpenses } from '../../redux/slices/expenseReducer';
 const Dashboard = () => {
 
   const items = useSelector(state => state);
+  
   const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchIncomes());
-        dispatch(fetchExpenses())
-    })
 
     const svgRef = useRef();
 
     useEffect(()=>{
 
-      let incomeData = [
-        {title: "first", amount: 100, date: "2024-02-01"},
-        {title: "second", amount: 200, date: "2024-02-02"},
-        {title: "third", amount: 300, date: "2024-02-03"},
-        {title: "fourth", amount: 400, date: "2024-02-04"},
-        {title: "fifth", amount: 500, date: "2024-02-05"},
-      ];
-      let incomeDates=[], incomeAmounts=[];
-      const parseTime = d3.timeParse("%Y-%m-%d");
-      for(let i=0; i<items.income.incomes.length; i++){
-        incomeData.push(items.income.incomes[i]);
-      }
-      for(let i=0; i<incomeData.length; i++){
-        incomeDates.push(parseTime(incomeData[i].date));
-        incomeAmounts.push(incomeData[i].amount);
-      }
+      dispatch(fetchIncomes());
+      dispatch(fetchExpenses());
+
+      console.log(items);
 
       let dates=[];
       for(let i=0; i<items.income.incomes.length; i++){
@@ -67,7 +51,7 @@ const Dashboard = () => {
       .range([height, 0]);
 
 
-      const xAxis = d3.axisBottom(xScale).ticks(incomeDates.length);
+      const xAxis = d3.axisBottom(xScale).ticks(dates.length);
       const yAxis = d3.axisLeft(yScale).ticks(10);
       svg.append('g')
       .call(xAxis)
@@ -84,8 +68,6 @@ const Dashboard = () => {
       // .attr('x', height/2)
       // .attr('y', -50)
       // .text('Amount in Rs');
-
-      console.log(items.income.incomes);
 
       svg.selectAll()
       .data(items.income.incomes)
@@ -105,7 +87,9 @@ const Dashboard = () => {
       .attr('r', 2)
       .attr('fill', '#f20202');
 
-    }, [items]);
+    }, []);
+
+    // ChartJS.options.animation = false;
 
   return (
     <>
